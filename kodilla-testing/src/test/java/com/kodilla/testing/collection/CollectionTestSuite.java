@@ -35,9 +35,15 @@ public class CollectionTestSuite {
                 normalList.add(16);
                 normalList.add(18);
                 normalList.add(19);
+        ArrayList<Integer> expectedList = new ArrayList<>();
+                expectedList.add(4);
+                expectedList.add(8);
+                expectedList.add(16);
+                expectedList.add(18);
         //When
         ArrayList<Integer> normalTestList = exterminator.exterminate(new ArrayList<Integer>(normalList));
         //Then
         Assert.assertEquals(4, normalTestList.size());
+        Assert.assertEquals(expectedList, normalTestList);
     }
 }
