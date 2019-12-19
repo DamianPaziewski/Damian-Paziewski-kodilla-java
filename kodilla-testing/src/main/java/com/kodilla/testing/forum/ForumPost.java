@@ -4,9 +4,9 @@ public class ForumPost {
     String postBody;
     String author;
 
-    public ForumPost(String postBody, String author) {
-        this.postBody = postBody;
+    public ForumPost(String author, String postBody) {
         this.author = author;
+        this.postBody = postBody;
     }
 
     public String getPostBody() {
