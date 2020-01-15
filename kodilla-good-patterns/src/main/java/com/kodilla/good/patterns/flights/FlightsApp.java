@@ -12,8 +12,8 @@ public class FlightsApp {
         Set<Flight> toBarcelona = flightsService.findFlightsTo("Barcelona");
         System.out.println("Flights to: " + toBarcelona);
 
-        Set<Flight> fromWarsawViaParisToLondon = flightsService.findFlightFromViaTo("Warsaw", "Paris", "London");
-        System.out.println("Flights through: " + fromWarsawViaParisToLondon);
+        Set<Flight> fromWarsawViaLondonToParis = flightsService.findFlightFromViaTo("Warsaw", "London", "Paris");
+        System.out.println("Flights through: " + fromWarsawViaLondonToParis);
 
     }
 }

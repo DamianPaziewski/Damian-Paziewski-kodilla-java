@@ -21,21 +21,18 @@ public class FlightService {
 
     public Set<Flight> findFlightFromViaTo(String departureAirport, String viaAirport, String arrivalAirport) {
 
-        Flight flightFrom = flightConnections.stream()
+        Set<Flight> flightFrom = flightConnections.stream()
                 .filter(f -> f.getDepartureAirport().equals(departureAirport))
                 .filter(f -> f.getArrivalAirport().equals(viaAirport))
-                .findFirst().get();
+                .collect(Collectors.toSet());
 
-        Flight flightTo = flightConnections.stream()
+        Set<Flight> flightTo = flightConnections.stream()
                 .filter(f -> f.getDepartureAirport().equals(viaAirport))
                 .filter(f -> f.getArrivalAirport().equals(arrivalAirport))
-                .findFirst().get();
+                .collect(Collectors.toSet());
 
-        HashSet<Flight> flights = new HashSet<>();
-        flights.add(flightFrom);
-        flights.add(flightTo);
-
-        return flights;
+        flightTo.addAll(flightFrom);
+        return Collections.unmodifiableSet(flightTo);
     }
 
     public Set<Flight> findFlightsFrom(String fromCity) {

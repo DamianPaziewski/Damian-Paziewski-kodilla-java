@@ -18,6 +18,12 @@ public class Flight {
     }
 
     @Override
+    public String toString() {
+        return "departureAirport '" + departureAirport + '\'' +
+                "- arrivalAirport '" + arrivalAirport + '\'';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
