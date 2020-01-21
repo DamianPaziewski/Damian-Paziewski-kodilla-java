@@ -7,7 +7,7 @@ public class TaskList {
     private List<String> tasks;
 
     public TaskList() {
-        tasks = new ArrayList<>();
+        this.tasks = new ArrayList<>();
     }
 
     public boolean addTask(String task){

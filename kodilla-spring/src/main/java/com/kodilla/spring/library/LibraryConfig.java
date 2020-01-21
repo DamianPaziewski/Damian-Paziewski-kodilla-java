@@ -6,12 +6,12 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class LibraryConfig {
     @Bean
-    public Library library2() {
-        return new Library(libraryDbController2());
+    public Library library() {
+        return new Library(libraryDbController());
     }
 
     @Bean
-    public LibraryDbController libraryDbController2() {
+    public LibraryDbController libraryDbController() {
         return new LibraryDbController();
     }
 }
