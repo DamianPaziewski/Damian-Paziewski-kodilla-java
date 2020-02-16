@@ -9,11 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class CompanyDaoTestSuite {
     @Autowired
     CompanyDao companyDao;
+    @Autowired
+    EmployeeDao employeeDao;
 
     @Test
     public void testSaveManyToMany(){
@@ -59,5 +63,42 @@ public class CompanyDaoTestSuite {
         } catch (Exception e) {
             //do nothing
         }
+    }
+
+    @Test
+    public void testNamedQueries(){
+
+        //Given
+        Employee johnSmith = new Employee("John", "Smith");
+        Employee stephanieClarkson = new Employee("Stephanie", "Clarkson");
+        Employee lindaSmith = new Employee("Linda", "Smith");
+
+        Company softwareMachine = new Company("Software Machine");
+        Company softDataMasters = new Company("Soft Data Masters");
+        Company greyMatter = new Company("Grey Matter");
+
+        softwareMachine.getEmployees().add(johnSmith);
+        softDataMasters.getEmployees().add(stephanieClarkson);
+        softDataMasters.getEmployees().add(lindaSmith);
+        greyMatter.getEmployees().add(johnSmith);
+        greyMatter.getEmployees().add(lindaSmith);
+
+        johnSmith.getCompanies().add(softwareMachine);
+        johnSmith.getCompanies().add(greyMatter);
+        stephanieClarkson.getCompanies().add(softDataMasters);
+        lindaSmith.getCompanies().add(softDataMasters);
+        lindaSmith.getCompanies().add(greyMatter);
+
+        companyDao.save(softwareMachine);
+        companyDao.save(softDataMasters);
+        companyDao.save(greyMatter);
+
+        //When
+        List<Employee> lastName = employeeDao.retrieveEmployeeWithLastnameEqualTo("Smith");
+        List<Company> nameStartedWith = companyDao.retrieveCompaniesStartsWith("Sof");
+
+        //Then
+        Assert.assertEquals(2, lastName.size());
+        Assert.assertEquals(2, nameStartedWith.size());
     }
 }
