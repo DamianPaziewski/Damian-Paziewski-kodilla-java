@@ -1,0 +1,14 @@
+INDEX DLA BOOKS
+CREATE INDEX BOOKS_IND ON BOOKS(TITLE);
+---------------------------------------------------------
+INDEX
+CREATE INDEX READERS_IND ON READERS(FIRSTNAME, LASTNAME);
+----------------------------------------------------------
+EXPLAIN SELECT * 
+FROM READERS
+WHERE FIRSTNAME="JOHN";
+----------------------------------------------------------
+PRZED
+https://snipboard.io/eNr9O1.jpg
+PO
+https://snipboard.io/nKIT06.jpg
